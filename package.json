@@ -8,6 +8,7 @@
   "dependencies": {
     "caminte": "^0.2.7",
     "connect-redis": "^3.0.2",
+    "deepcopy": "^0.6.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "intel": "^1.1.0",

@@ -51,7 +51,7 @@ var prefix = "xwjs",
             }
         },
         orm: {
-            driver: "redis",
+            driver: "redis_xwjs",
             config: redis
         }
     };
