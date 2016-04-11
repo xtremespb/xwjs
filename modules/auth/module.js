@@ -1,25 +1,26 @@
 module.exports = function(app) {
-    var router = app.get('express').Router(),
-        path = require("path"),
+    var path = require("path"),
+        config = require(path.join('..', '..', 'etc', 'config')),
         logger = require(path.join("..", "..", "core", "logger")),
-        orm = require(path.join("..", "..", "core", "orm"));
-    router.get('/', function(req, res) {
+        orm = require(path.join("..", "..", "core", "orm")),
+        Users = require(path.join(__dirname, 'schema', 'users')),
+        router_frontend = require(path.join(__dirname, "./frontend.js"))(app),
+        router_backend = require(path.join(__dirname, "./backend.js"))(app),
+        router_api = require(path.join(__dirname, "./api.js"))(app);
 
-        var Users = orm.define('user', {
-            id: { type: orm.Integer, unique: true },
-            username: { type: orm.String, limit: 40 },
-            password: { type: orm.String, limit: 64 }
-        }, {});
-
-        var users = new Users();
-        console.log(users);
-        Users.create({username: 'medved', password: '3434'}, function(err) {
-            console.log(err);
-        });
-        return res.send("OK");
-    });
     return {
-        prefix: "/api/auth",
-        router: router
+        frontend: {
+            prefix: "/auth",
+            router: router_frontend
+        },
+        backend: {
+            prefix: "/admin/auth",
+            router: router_backend
+        },
+        api: {
+            prefix: "/api/auth",
+            router: router_api
+        }
     };
+
 };

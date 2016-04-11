@@ -5,8 +5,18 @@ var express = require('express'),
     fs = require('fs'),
     deepcopy = require("deepcopy"),
     logger = require('./logger'),
+    cookie_parser = require('cookie-parser'),
+    body_parser = require('body-parser'),
     default_routes = require(path.join(__dirname, 'default_routes'))(app),
     config = require(path.join('..', 'etc', 'config'));
+
+/* Initialize cookie and body parsers */
+
+app.use(cookie_parser(config.session.settings.secret));
+app.use(body_parser.json());
+app.use(body_parser.urlencoded({
+    extended: true
+}));
 
 /* Initialize session engine */
 var session_driver = require(path.join(__dirname, 'session', config.session.store.name))(app);
@@ -29,14 +39,16 @@ for (var mt in modules_process) {
     }
     var module_load = require(path.join(__dirname, '..', 'modules', modules_process[mt], 'module'))(app);
     if (module) {
-        app.use(module_load.prefix, module_load.router);
+        if (module_load.frontend) app.use(module_load.frontend.prefix, module_load.frontend.router);
+        if (module_load.backend) app.use(module_load.backend.prefix, module_load.backend.router);
+        if (module_load.api) app.use(module_load.api.prefix, module_load.api.router);
         try {
             var static_path = path.join(__dirname, '..', 'modules', modules_process[mt], 'static'),
                 static_lstat = fs.lstatSync(path.join(static_path));
             if (static_lstat && static_lstat.isDirectory()) {
-            	app.use(express.static(static_path));
+                app.use(express.static(static_path));
             } else {
-            	throw true;
+                throw true;
             }
         } catch (e) {
             logger.debug("No static folder for module: " + modules_process[mt]);

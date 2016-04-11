@@ -8,7 +8,8 @@ var intel = require("intel"),
 var prefix = "xwjs",
     redis = {
         host: "localhost",
-        port: 6379
+        port: 6379,
+        prefix: prefix + "_db"
     },
     config = {
     	prefix: prefix,
@@ -51,7 +52,7 @@ var prefix = "xwjs",
             }
         },
         orm: {
-            driver: "redis_xwjs",
+            driver: "redis",
             config: redis
         }
     };

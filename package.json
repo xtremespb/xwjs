@@ -6,13 +6,16 @@
     "start": "node ./bin/server.js"
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
     "caminte": "^0.2.7",
     "connect-redis": "^3.0.2",
+    "cookie-parser": "^1.4.1",
     "deepcopy": "^0.6.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "intel": "^1.1.0",
     "path": "^0.12.7",
+    "pngjs": "^2.2.0",
     "redis": "^2.5.3",
     "swig": "^1.4.2"
   }

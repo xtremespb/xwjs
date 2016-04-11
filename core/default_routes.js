@@ -16,7 +16,8 @@ module.exports = function(app) {
             next(err);
         },
         errorHandler: function(err, req, res, next) {
-        	res.status(err.status || 500);
+        	if (!err.status) err.status = 500;
+            res.status(err.status);
         	logger.error(req.ip + " " + req.method + " " + req.originalUrl + " [" + err.status + "] " + err.message);
         	res.send(err.status + " " + err.message);
         }
