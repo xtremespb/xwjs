@@ -54,6 +54,9 @@ var prefix = "xwjs",
         orm: {
             driver: "redis",
             config: redis
+        },
+        captcha: {
+            driver: "yac"
         }
     };
 

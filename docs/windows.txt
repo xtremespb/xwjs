@@ -1,0 +1,7 @@
+To compile NPM modules under Windows:
+
+1. Download VC++ Build Tools Tech Preview: http://go.microsoft.com/fwlink/?LinkId=691132
+1.1. Windows 7 only: download .NET Framework 4.5.1: http://www.microsoft.com/en-us/download/details.aspx?id=40773
+2. Install Python 2.7: https://www.python.org/downloads/, add it to your PATH, npm config set python python2.7
+3. Download and install Windows SDK
+3. Launch cmd, npm config set msvs_version 2015 --global

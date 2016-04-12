@@ -6,6 +6,7 @@
     "start": "node ./bin/server.js"
   },
   "dependencies": {
+    "async": "^1.5.2",
     "body-parser": "^1.15.0",
     "caminte": "^0.2.7",
     "connect-redis": "^3.0.2",
