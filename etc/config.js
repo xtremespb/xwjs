@@ -6,11 +6,19 @@ var intel = require("intel"),
 /* Configuration */
 
 var prefix = "xwjs",
+    /* Configuration for different adapters and services */
     redis = {
         host: "localhost",
         port: 6379,
         prefix: prefix + "_db"
     },
+    filestore = {
+        path: path.join(__dirname, "..", "tmp", "session")
+    },
+    tingodb = {
+        database: path.join(__dirname, "db")
+    },
+    /* Configuration variables */
     config = {
     	prefix: prefix,
         server: {
@@ -20,8 +28,8 @@ var prefix = "xwjs",
         session: {
         	ttl: 604800, // 7 days
         	store: {
-        		name: 'redis',
-        		settings: redis
+        		name: 'filestore',
+        		settings: filestore
         	},
             settings: {
                 secret: "pB3fK88kFN952UVMhwa5DWt32b9Qr6FC",
@@ -52,8 +60,8 @@ var prefix = "xwjs",
             }
         },
         orm: {
-            driver: "redis",
-            config: redis
+            driver: "tingodb",
+            config: tingodb
         },
         captcha: {
             driver: "yac"

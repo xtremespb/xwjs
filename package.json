@@ -14,10 +14,14 @@
     "deepcopy": "^0.6.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "i18n-2": "^0.6.3",
     "intel": "^1.1.0",
+    "nodemailer": "^2.3.2",
+    "nunjucks": "^2.4.1",
     "path": "^0.12.7",
     "pngjs": "^2.2.0",
     "redis": "^2.5.3",
-    "swig": "^1.4.2"
+    "session-file-store": "^0.2.0",
+    "tingodb": "^0.4.2"
   }
 }

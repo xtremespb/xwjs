@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ title }} | {{ config_website[lang].title }}</title>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/uikit/css/uikit.gradient.min.css">
+        <script src="/js/jquery.min.js"></script>
+        <script src="/uikit/js/uikit.min.js"></script>
+    </head>
+    <body>
+        <div class="xwjs-container xwjs-container-center xwjs-margin-large-top xwjs-margin-large-bottom">
+            <h1>{{ title }}</h1>
+            <div class="xwjs-alert xwjs-alert-danger">{{ error.message }}</div>
+            <p><small>Powered by xwjs engine</small></p>
+        </div>
+    </body>
+</html>

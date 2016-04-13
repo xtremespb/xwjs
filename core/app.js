@@ -1,3 +1,5 @@
+/* Required modules */
+
 var express = require('express'),
     app = express().set('express', express),
     session = require('express-session'),
@@ -8,7 +10,13 @@ var express = require('express'),
     cookie_parser = require('cookie-parser'),
     body_parser = require('body-parser'),
     default_routes = require(path.join(__dirname, 'default_routes'))(app),
-    config = require(path.join('..', 'etc', 'config'));
+    config = require(path.join(__dirname, '..', 'etc', 'config')),
+    config_website = require(path.join(__dirname, '..', 'etc', 'website'));
+
+/* Set variables */
+
+app.set("config", config);
+app.set("config_website", config_website);
 
 /* Initialize cookie and body parsers */
 

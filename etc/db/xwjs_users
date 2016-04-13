@@ -1,0 +1,3 @@
+{"k":"0000000078","o":"0000000094","v":"001"}
+{"_id":2,"_uid":2,"_dt":1460534317052,"_s":"322e08b470cc62e736aba1aea5c2cdf3"}
+{"username":"test","password":"12345678","email":"xtreme@rh1.ru","_id":{"$wrap":"$oid","v":2}}

@@ -1,6 +1,12 @@
 module.exports = function(app) {
-    var logger = require('./logger'),
-    	default_routes = {
+    var path = require("path"),
+        te = require(path.join(__dirname, "template_engine")),
+        logger = require(path.join(__dirname, "logger")),
+        i18n = require(path.join(__dirname, "i18n"))(app);
+
+    i18n.init();
+
+    var default_routes = {
         first: function(req, res, next) {
             logger.debug(req.ip + " " + req.method + " " + req.originalUrl);
             if (!req.session) {
@@ -11,15 +17,36 @@ module.exports = function(app) {
             next();
         },
         notFound: function(req, res, next) {
-            var err = new Error("Not found");
+            i18n.detect_locale(req);
+            var err = new Error(i18n.get().__("The page you are trying to reach does not exist, or has been moved"));
             err.status = 404;
             next(err);
         },
         errorHandler: function(err, req, res, next) {
-        	if (!err.status) err.status = 500;
+            i18n.detect_locale(req);
+            if (!err.status) err.status = 500;
+            var config = app.get("config"),
+                config_website = app.get("config_website");
+            var log_message = req.ip + " " + req.method + " " + req.originalUrl + " [" + err.status + "] " + err.message;
+            if (err.status != 404) {
+                logger.error(log_message);
+            } else {
+                logger.debug(log_message);
+            }
             res.status(err.status);
-        	logger.error(req.ip + " " + req.method + " " + req.originalUrl + " [" + err.status + "] " + err.message);
-        	res.send(err.status + " " + err.message);
+            te.render(path.join(__dirname, "..", "views", "error.njk"), {
+                config: config,
+                config_website: config_website,
+                lang: i18n.get().getLocale(),
+                title: i18n.get().__("Error") + " (" + err.status + ")",
+                error: err
+            }, function(err, html) {
+                if (err) {
+                    logger.error(err);
+                    throw err;
+                }
+                res.send(html);
+            });
         }
     };
     return default_routes;
