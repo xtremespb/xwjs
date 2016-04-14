@@ -1,7 +1,8 @@
 /* Required modules */
 
 var intel = require("intel"),
-    path = require("path");
+    path = require("path"),
+    nodemailer = require('nodemailer');
 
 /* Configuration */
 
@@ -18,19 +19,25 @@ var prefix = "xwjs",
     tingodb = {
         database: path.join(__dirname, "db")
     },
+    /* Mail transporter */
+    transporter = nodemailer.createTransport({
+        transport: "sendmail",
+        path: "/usr/sbin/sendmail",
+        args: []
+    }),
     /* Configuration variables */
     config = {
-    	prefix: prefix,
+        prefix: prefix,
         server: {
             host: "127.0.0.1",
             port: "3000"
         },
         session: {
-        	ttl: 604800, // 7 days
-        	store: {
-        		name: 'filestore',
-        		settings: filestore
-        	},
+            ttl: 604800, // 7 days
+            store: {
+                name: 'filestore',
+                settings: filestore
+            },
             settings: {
                 secret: "pB3fK88kFN952UVMhwa5DWt32b9Qr6FC",
                 name: prefix + "_sid",
@@ -65,7 +72,8 @@ var prefix = "xwjs",
         },
         captcha: {
             driver: "yac"
-        }
+        },
+        transporter: transporter
     };
 
 module.exports = config;

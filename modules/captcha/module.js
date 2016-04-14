@@ -4,7 +4,7 @@ module.exports = function(app) {
     return {
         api: {
             prefix: "/api/captcha",
-            router: router_api
+            data: router_api
         }
     };
 

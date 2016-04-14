@@ -1,24 +1,24 @@
 var website = {
-	/*
+    /*
 
-	Main configuration:
+    Main configuration:
 
-	define your logo URL, e-mail addresses etc.
+    define your e-mail addresses etc.
 
-	*/
-    logo_url: "http://127.0.0.1:3000/xwjs/images/xwjs_logo.png",
+    */
+
     email: {
         noreply: "noreply@localhost",
         contact: "info@localhost",
     },
     /*
 
-	Locales:
+    Locales:
 
-	locale-sensitive configuration (languages available, site title etc.)
-	Note: first item in locales.avail is the default language
+    locale-sensitive configuration (languages available, site title etc.)
+    Note: first item in locales.avail is the default language
 
-	*/
+    */
     locales: {
         avail: ["en", "ru"],
         source: {
@@ -32,12 +32,22 @@ var website = {
     en: {
         lang: "English",
         url: "http://127.0.0.1:3000",
-        title: "Default XWJS website"
+        title: "Default XWJS website",
+        logo: {
+            url: "http://127.0.0.1:3000/xwjs/images/xwjs_logo.png",
+            width: 153,
+            height: 189
+        }
     },
     ru: {
         lang: "Русский",
         url: "http://127.0.0.1:3000",
-        title: "Сайт на движке XWJS"
+        title: "Сайт на движке XWJS",
+        logo: {
+            url: "http://127.0.0.1:3000/xwjs/images/xwjs_logo.png",
+            width: 153,
+            height: 189
+        }
     }
 };
 

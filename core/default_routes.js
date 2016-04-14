@@ -1,10 +1,11 @@
 module.exports = function(app) {
     var path = require("path"),
-        te = require(path.join(__dirname, "template_engine")),
+        te = require(path.join(__dirname, "template_engine"))(app),
         logger = require(path.join(__dirname, "logger")),
         i18n = require(path.join(__dirname, "i18n"))(app);
 
     i18n.init();
+    te.init(path.join(__dirname, "..", "views"));
 
     var default_routes = {
         first: function(req, res, next) {
@@ -34,7 +35,7 @@ module.exports = function(app) {
                 logger.debug(log_message);
             }
             res.status(err.status);
-            te.render(path.join(__dirname, "..", "views", "error.njk"), {
+            te.get().render("error.njk", {
                 config: config,
                 config_website: config_website,
                 lang: i18n.get().getLocale(),

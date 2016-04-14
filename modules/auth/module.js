@@ -11,15 +11,15 @@ module.exports = function(app) {
     return {
         frontend: {
             prefix: "/auth",
-            router: router_frontend
+            data: router_frontend
         },
         backend: {
             prefix: "/admin/auth",
-            router: router_backend
+            data: router_backend
         },
         api: {
             prefix: "/api/auth",
-            router: router_api
+            data: router_api
         }
     };
 
