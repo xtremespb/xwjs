@@ -14,7 +14,11 @@ var prefix = "xwjs",
         prefix: prefix + "_db"
     },
     filestore = {
-        path: path.join(__dirname, "..", "tmp", "session")
+        path: path.join(__dirname, "..", "tmp", "session"),
+        reapAsync: true,
+        reapSyncFallback: true,
+        reapInterval: 86400,
+        maxAge: 604800
     },
     tingodb = {
         database: path.join(__dirname, "db")

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" class="xwjs-height-1-1">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ i18n.__("login") }} | {{ config_website[lang].title }}</title>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/uikit/css/uikit.gradient.min.css">
+        <link rel="stylesheet" href="/xwjs/css/frontend.min.css">
+        <link rel="stylesheet" href="/modules/auth/css/login.min.css">
+        <script src="/js/jquery.min.js"></script>
+        <script src="/uikit/js/uikit.min.js"></script>
+        <script src="/modules/auth/js/login.min.js"></script>
+        <script src="/api/auth/lang"></script>
+    </head>
+    <body class="xwjs-height-1-1">
+        <div class="xwjs-vertical-align xwjs-text-center xwjs-height-1-1">
+            <div class="xwjs-vertical-align-middle xwjs-margin-top" style="width: 250px;padding-bottom:20px">
+                <a href="/"><img class="xwjs-margin-bottom" width="140" height="59" src="/xwjs/images/logo.png" alt=""></a>
+                <div class="xwjs-panel xwjs-panel-box xwjs-form">
+                    <div class="xwjs-form-row">
+                        <input class="xwjs-width-1-1 xwjs-form-large" type="text" placeholder="{{ i18n.__("username") }}" id="auth_username" data-validation="length" data-validation-length="3-20">
+                    </div>
+                    <div class="xwjs-form-row">
+                        <input class="xwjs-width-1-1 xwjs-form-large" type="password" placeholder="{{ i18n.__("password") }}" id="auth_password">
+                    </div>
+                    <div class="xwjs-form-row">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="" class="xwjs-login-captcha-img" data-xwjs-tooltip="{pos:'bottom'}" title="{{ i18n.__("captcha_refresh") }}">
+                    </div>
+                    <div class="xwjs-form-row">
+                        <input class="xwjs-width-1-1 xwjs-form-large xwjs-login-captcha" type="text" placeholder="{{ i18n.__("captcha") }}" id="auth_captcha">
+                    </div>
+                    <div class="xwjs-form-row">
+                        <button class="xwjs-width-1-1 xwjs-button xwjs-button-primary xwjs-button-large" id="btn_login">{{ i18n.__("login") }}</button>
+                    </div>
+                    <div class="xwjs-form-row xwjs-text-small">
+                        <a class="xwjs-float-left xwjs-link xwjs-link-muted" href="/auth/register">{{ i18n.__("register") }}</a>
+                        <a class="xwjs-float-right xwjs-link xwjs-link-muted" href="/auth/password">{{ i18n.__("forgot_password") }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

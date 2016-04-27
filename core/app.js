@@ -51,10 +51,22 @@ for (var mt in modules_process) {
                 }
             }
         }
-        /*
-        if (module_load.backend) app.use(module_load.backend.prefix, module_load.backend.data.router);
-        if (module_load.frontent) app.use(module_load.frontent.prefix, module_load.frontent.data.router);
-        */
+        if (module_load.backend) {
+            if (module_load.backend.data.router) app.use(module_load.backend.prefix, module_load.backend.data.router);
+            for (var property in module_load.backend.data.methods) {
+                if (module_load.backend.data.methods.hasOwnProperty(property)) {
+                    methods[property] = module_load.backend.data.methods[property];
+                }
+            }
+        }
+        if (module_load.frontend) {
+            if (module_load.frontend.data.router) app.use(module_load.frontend.prefix, module_load.frontend.data.router);
+            for (var property in module_load.frontend.data.methods) {
+                if (module_load.frontend.data.methods.hasOwnProperty(property)) {
+                    methods[property] = module_load.frontend.data.methods[property];
+                }
+            }
+        }
         try {
             var static_path = path.join(__dirname, '..', 'modules', modules_process[mt], 'static'),
                 static_lstat = fs.lstatSync(path.join(static_path));

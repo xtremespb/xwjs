@@ -1,11 +1,11 @@
 module.exports = function(app) {
     var path = require("path"),
-        te = require(path.join(__dirname, "template_engine"))(app),
+        template_engine = require(path.join(__dirname, "template_engine"))(app),
         logger = require(path.join(__dirname, "logger")),
         i18n = require(path.join(__dirname, "i18n"))(app);
 
     i18n.init();
-    te.init(path.join(__dirname, "..", "views"));
+    template_engine.init(path.join(__dirname, "..", "views"));
 
     var default_routes = {
         first: function(req, res, next) {
@@ -19,7 +19,7 @@ module.exports = function(app) {
         },
         notFound: function(req, res, next) {
             i18n.detect_locale(req);
-            var err = new Error(i18n.get().__("The page you are trying to reach does not exist, or has been moved"));
+            var err = new Error(i18n.get().__("not_found"));
             err.status = 404;
             next(err);
         },
@@ -35,11 +35,11 @@ module.exports = function(app) {
                 logger.debug(log_message);
             }
             res.status(err.status);
-            te.get().render("error.njk", {
+            template_engine.get().render("error.njk", {
                 config: config,
                 config_website: config_website,
                 lang: i18n.get().getLocale(),
-                title: i18n.get().__("Error") + " (" + err.status + ")",
+                title: i18n.get().__("error") + " (" + err.status + ")",
                 error: err
             }, function(err, html) {
                 if (err) {

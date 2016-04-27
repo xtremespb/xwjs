@@ -1,4 +1,4 @@
 {
-	"Error": "Error",
-	"The page you are trying to reach does not exist, or has been moved": "The page you are trying to reach does not exist, or has been moved"
+	"error": "Error",
+	"not_found": "The page you are trying to reach does not exist, or has been moved"
 }

@@ -1,0 +1,26 @@
+.xwjs-login-captcha-img {
+	border: 1px solid #ccc;
+	cursor: pointer;
+}
+
+.xwjs-login-captcha {
+    text-align: center;
+}
+
+.xwjs-login-captcha::-webkit-input-placeholder {
+    text-align: center;
+}
+
+.xwjs-login-captcha:-moz-placeholder {
+    /* Firefox 18- */
+    text-align: center;
+}
+
+.xwjs-login-captcha::-moz-placeholder {
+    /* Firefox 19+ */
+    text-align: center;
+}
+
+.xwjs-login-captcha:-ms-input-placeholder {
+    text-align: center;
+}

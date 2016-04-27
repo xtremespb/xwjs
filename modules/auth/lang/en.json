@@ -1,1 +1,9 @@
-{}
+{
+	"login": "Login",
+	"username": "Username",
+	"password": "Password",
+	"register": "Register",
+	"forgot_password": "Forgot password?",
+	"captcha": "Captcha",
+	"captcha_refresh": "Click image to get another captcha"
+}

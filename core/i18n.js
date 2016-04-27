@@ -6,7 +6,7 @@ module.exports = function(app) {
         i18n = {
             init: function(module) {
                 var dir = path.join(__dirname, "..", "core", "lang");
-                if (module) path.join(__dirname, "..", "modules", module, "lang");
+                if (module) dir = path.join(__dirname, "..", "modules", module, "lang");
                 i18nm = new(require('i18n-2'))({
                     locales: config_website.locales.avail,
                     directory: dir,

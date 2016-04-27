@@ -4,9 +4,15 @@ module.exports = function(app) {
         mailer = require(path.join(__dirname, "..", "..", "core", "mailer"))(app),
         i18n = require(path.join(__dirname, "..", "..", "core", "i18n"))(app);
 
-    i18n.init();
+    i18n.init("auth");
 
-    var login = function(req, res, next) {
+    var lang = function(req, res, next) {
+            res.setHeader('Content-Type', 'application/javascript');
+            i18n.detect_locale(req);
+            res.send("var i18n = " + JSON.stringify(i18n.get().locales[i18n.get().getLocale()]) + ";");
+        },
+        login = function(req, res, next) {
+            res.setHeader('Content-Type', 'application/json');
             var username = req.query.username,
                 password = req.query.password,
                 err_code = 0;
@@ -24,6 +30,7 @@ module.exports = function(app) {
             });
         },
         register = function(req, res, next) {
+            res.setHeader('Content-Type', 'application/json');
             i18n.detect_locale(req);
             mailer.send("xtreme@rh1.ru", "Just a test", "<b>Hello</b> медвед", i18n, true, function(err) {
             });
@@ -51,6 +58,7 @@ module.exports = function(app) {
     /* Return routes and methods */
 
     var router = app.get("express").Router();
+    router.get("/lang", lang);
     router.get("/login", login);
     router.get("/register", register);
 

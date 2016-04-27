@@ -1,0 +1,6 @@
+{
+    "css": [{
+        "source": ["frontend.css"],
+        "output": "frontend.min.css"
+    }]
+}

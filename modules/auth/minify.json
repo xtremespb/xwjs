@@ -1,0 +1,10 @@
+{
+    "css": [{
+        "source": ["../../../../static/uikit/css/components/tooltip.gradient.min.css", "login.css"],
+        "output": "login.min.css"
+    }],
+    "js": [{
+        "source": ["../../../../static/js/jquery.form-validator.min.js", "../../../../static/uikit/js/components/tooltip.min.js", "login.js"],
+        "output": "login.min.js"
+    }]
+}
