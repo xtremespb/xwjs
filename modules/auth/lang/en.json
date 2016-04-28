@@ -5,5 +5,13 @@
 	"register": "Register",
 	"forgot_password": "Forgot password?",
 	"captcha": "Captcha",
-	"captcha_refresh": "Click image to get another captcha"
+	"captcha_refresh": "Click image to get another captcha",
+	"invalid_username": "Should contain 3-20 latin characters",
+	"invalid_password": "Should contain 8-64 characters",
+	"invalid_captcha": "Should contain 5 latin characters",
+	"error_username": "Invalid username syntax",
+	"error_password": "Invalid password syntax",
+	"error_captcha": "Invalid captcha",
+	"error_unauthorized": "Authorization failed",
+	"error_unknown": "Unknown error. Please try again later."
 }

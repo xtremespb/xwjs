@@ -1,10 +1,10 @@
 {
     "css": [{
-        "source": ["../../../../static/uikit/css/components/tooltip.gradient.min.css", "login.css"],
+        "source": ["../../../../static/uikit/css/components/tooltip.gradient.min.css", "../../../../static/uikit/css/components/notify.gradient.min.css", "login.css"],
         "output": "login.min.css"
     }],
     "js": [{
-        "source": ["../../../../static/js/jquery.form-validator.min.js", "../../../../static/uikit/js/components/tooltip.min.js", "login.js"],
+        "source": ["../../../../static/js/jquery.formValidator.min.js", "../../../../static/js/jquery.queryParser.min.js", "../../../../static/uikit/js/components/tooltip.min.js", "../../../../static/uikit/js/components/notify.min.js", "login.js"],
         "output": "login.min.js"
     }]
 }

@@ -24,3 +24,7 @@
 .xwjs-login-captcha:-ms-input-placeholder {
     text-align: center;
 }
+
+.xwjs-text-danger {
+	font-size: 80%;
+}
