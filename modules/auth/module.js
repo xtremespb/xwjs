@@ -1,21 +1,14 @@
 module.exports = function(app) {
     var path = require("path"),
-        config = require(path.join('..', '..', 'etc', 'config')),
-        logger = require(path.join("..", "..", "core", "logger")),
-        orm = require(path.join("..", "..", "core", "orm")),
-        Users = require(path.join(__dirname, 'schema', 'users')),
+        preroutes = require(path.join(__dirname, "./preroutes.js"))(app),
         router_frontend = require(path.join(__dirname, "./frontend.js"))(app),
-        router_backend = require(path.join(__dirname, "./backend.js"))(app),
         router_api = require(path.join(__dirname, "./api.js"))(app);
 
     return {
+        preroutes: preroutes,
         frontend: {
             prefix: "/auth",
             data: router_frontend
-        },
-        backend: {
-            prefix: "/admin/auth",
-            data: router_backend
         },
         api: {
             prefix: "/api/auth",

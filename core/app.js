@@ -32,10 +32,21 @@ app.use(express.static(path.join(__dirname, '..', 'static')));
 /* Load "first" route */
 app.use(default_routes.first);
 
-/* Load modules */
+/* Modules */
 var modules = fs.readdirSync(path.join(__dirname, '..', 'modules')),
     modules_process = deepcopy(modules),
     methods = {};
+
+/* Loading preroutes */
+for (var mt in modules_process) {
+    if (!fs.lstatSync(path.join(__dirname, '..', 'modules', modules_process[mt])).isDirectory()) continue;
+    var module_load = require(path.join(__dirname, '..', 'modules', modules_process[mt], 'module'))(app);
+    if (module_load && module_load.preroutes)
+        for (var p in module_load.preroutes)
+            app.use(module_load.preroutes[p]);
+}
+
+/* Loading routes and methods */
 for (var mt in modules_process) {
     if (!fs.lstatSync(path.join(__dirname, '..', 'modules', modules_process[mt])).isDirectory()) {
         modules.splice(mt);

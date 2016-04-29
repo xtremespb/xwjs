@@ -1,0 +1,10 @@
+{
+    "css": [{
+        "source": ["admin.css"],
+        "output": "admin.min.css"
+    }],
+    "js": [{
+        "source": ["admin.js"],
+        "output": "admin.min.js"
+    }]
+}

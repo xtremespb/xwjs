@@ -76,7 +76,7 @@ module.exports = function(app) {
     router.get("/lang", lang);
     router.post("/login", login);
     router.post("/logout", logout);
-    router.post("/register", register);
+    router.get("/register", register);
 
     return {
         router: router,

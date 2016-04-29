@@ -1,0 +1,14 @@
+.xwjs-navbar {
+    border: 0;
+    background-image: linear-gradient(to bottom, #2A2C2B, #1E1E20);
+    border-radius: 0;
+    height: 61px;
+}
+
+.xwjs-navbar-nav>li>a {
+	height:60px;
+}
+
+.xwjs-logo-img {
+	margin-top: 10px;
+}
