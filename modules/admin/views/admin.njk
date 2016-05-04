@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ title }} | {{ config_website[lang].title }}</title>
+        <title>{{ backend_data.title[lang] }} | {{ config_website[lang].title }}</title>
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="/uikit/css/uikit.gradient.min.css">
         <link rel="stylesheet" href="/xwjs/css/frontend.min.css">
@@ -13,10 +13,20 @@
         <script src="/modules/admin/js/admin.min.js"></script>
     </head>
     <body>
-        <nav class="xwjs-navbar">
+        <nav class="xwjs-navbar xwjs-admin-navbar">
             <ul class="xwjs-navbar-nav">
-                <a href="/" class="xwjs-navbar-brand"><img src="/xwjs/images/xwjs_logo_inv.png" alt="XWJS" class="xwjs-logo-img"></li></a>
+                <a href="/admin" class="xwjs-navbar-brand"><img src="/xwjs/images/xwjs_logo_inv.png" alt="XWJS" class="xwjs-logo-img"></li></a>
             </ul>
         </nav>
+        <div class="xwjs-grid xwjs-grid-small data-uk-grid-match">
+            <div class="xwjs-width-xlarge-1-6 xwjs-width-large-2-10 xwjs-width-medium-3-10 xwjs-hidden-small xwjs-admin-nav">
+                <ul class="xwjs-nav xwjs-nav-side">
+                    <li class="xwjs-admin-nav-home"><a href="/admin"><i class="xwjs-icon-home xwjs-nav-icon"></i>{{ i18n.__("admin_home") }}</a></li>{% for item in backend_json %}
+                    <li class="xwjs-admin-nav-{{ item.id }}"><a href="/admin/{{ item.id }}"><i class="xwjs-icon-{{ item.icon }} xwjs-nav-icon"></i>{{ item.title[lang] }}</a></li>{% endfor %}
+                </ul>
+            </div>
+            <div class="xwjs-width-xlarge-5-6 xwjs-width-large-8-10 xwjs-width-medium-7-10 xwjs-width-small-1-1 xwjs-admin-content">{{ backend_html }}</div>
+        </div>
+        <script>$('.xwjs-admin-nav-{{ backend_data.id }}').addClass('xwjs-active');</script>
     </body>
 </html>

@@ -5,10 +5,38 @@
     height: 61px;
 }
 
+.xwjs-nav-icon {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.xwjs-nav-side > li.xwjs-active > a > .xwjs-nav-icon {
+	padding-left: 14px;
+}
+
+.xwjs-nav-side > li.xwjs-active {
+	border-left: 6px solid #FFF0A5;
+}
+
 .xwjs-navbar-nav>li>a {
-	height:60px;
+    height: 60px;
 }
 
 .xwjs-logo-img {
-	margin-top: 10px;
+    margin-top: 16px;
+    /*width: 83px;
+    height: 35px;*/
+}
+
+.xwjs-admin-nav {
+    background-color: #eee;
+    padding-top: 20px;
+}
+
+.xwjs-admin-content {
+    padding: 20px 10px 10px 20px;
+    border-left: 1px solid #ccc;
+    -webkit-box-shadow: -2px 0px 15px -5px rgba(0, 0, 0, 0.56);
+    -moz-box-shadow: -2px 0px 15px -5px rgba(0, 0, 0, 0.56);
+    box-shadow: -2px 0px 15px -5px rgba(0, 0, 0, 0.56);
 }

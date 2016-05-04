@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ title }} | {{ config_website[lang].title }}</title>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/uikit/css/uikit.gradient.min.css">
+        <link rel="stylesheet" href="/xwjs/css/frontend.min.css">
+        <link rel="stylesheet" href="/modules/admin/css/admin.min.css">
+        <script src="/js/jquery.min.js"></script>
+        <script src="/uikit/js/uikit.min.js"></script>
+        <script src="/modules/admin/js/admin.min.js"></script>
+    </head>
+    <body class="xwjs-height-1-1">
+        <nav class="xwjs-navbar">
+            <ul class="xwjs-navbar-nav">
+                <a href="/" class="xwjs-navbar-brand"><img src="/xwjs/images/xwjs_logo_inv.png" alt="XWJS" class="xwjs-logo-img"></li></a>
+            </ul>
+        </nav>
+        <div class="xwjs-grid xwjs-grid-small data-uk-grid-match xwjs-height-1-1">
+            <div class="xwjs-width-xlarge-1-10 xwjs-width-large-2-10 xwjs-width-medium-3-10 xwjs-hidden-small xwjs-height-1-1 xwjs-admin-nav">
+                <ul class="xwjs-nav xwjs-nav-side">
+                    <li><a href="#"><i class="xwjs-icon-home"></i>&nbsp;{{ i18n.__("admin_home") }}</a></li>
+                </ul>
+            </div>
+            <div class="xwjs-width-xlarge-9-10 xwjs-width-large-8-10 xwjs-width-medium-7-10 xwjs-width-small-1-1 xwjs-admin-content">2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br>2<br></div>
+        </div>
+        <div class="xwjs-admin-footer">
+            &copy; 2016 Michael A. Matveev
+        </div>
+    </body>
+</html>
