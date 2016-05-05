@@ -1,5 +1,6 @@
 {
 	"admin_home": "Admin homepage",
 	"pagenotfound": "The page you are trying to reach does not exist, or has been moved",
-	"admin_panel": "Administator's panel"
+	"admin_panel": "Administator's panel",
+	"admin_logout": "Log out"
 }

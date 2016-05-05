@@ -16,9 +16,17 @@
         <nav class="xwjs-navbar xwjs-admin-navbar">
             <ul class="xwjs-navbar-nav">
                 <a href="/admin" class="xwjs-navbar-brand"><img src="/xwjs/images/xwjs_logo_inv.png" alt="XWJS" class="xwjs-logo-img"></li></a>
+                <li class="xwjs-parent" data-xwjs-dropdown="{pos:'right-center'}">
+                    <a href=""><i class="xwjs-icon-button xwjs-icon-user"></i>&nbsp;&nbsp;{{ auth.username }}&nbsp;<i class="xwjs-icon-caret-right"></i></a>
+                    <div class="xwjs-dropdown xwjs-dropdown-navbar xwjs-dropdown-small xwjs-admin-user-nav">
+                        <ul class="xwjs-nav xwjs-nav-navbar">
+                            <li><a href="/auth/logout">{{ i18n.__("admin_logout") }}</a></li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </nav>
-        <div class="xwjs-grid xwjs-grid-small data-uk-grid-match">
+        <div class="xwjs-grid xwjs-grid-small data-xwjs-grid-match">
             <div class="xwjs-width-xlarge-1-6 xwjs-width-large-2-10 xwjs-width-medium-3-10 xwjs-hidden-small xwjs-admin-nav">
                 <ul class="xwjs-nav xwjs-nav-side">
                     <li class="xwjs-admin-nav-home"><a href="/admin"><i class="xwjs-icon-home xwjs-nav-icon"></i>{{ i18n.__("admin_home") }}</a></li>{% for item in backend_json %}

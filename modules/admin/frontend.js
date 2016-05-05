@@ -1,6 +1,7 @@
 module.exports = function(app) {
     var path = require("path"),
         fs = require("fs-extra"),
+        async = require("async"),
         router = app.get("express").Router(),
         template_engine = require(path.join(__dirname, "..", "..", "core", "template_engine"))(app),
         logger = require(path.join(__dirname, "..", "..", "core", "logger")),
@@ -40,39 +41,51 @@ module.exports = function(app) {
             return next(err);
         }
         var backend_html, current_backend;
-        if (req.params && backends[req.params[0]]) {
-            current_backend = req.params[0].toLowerCase();
-            backend_html = backends[current_backend](req, res);
-        }
-        i18n.detect_locale(req);
-        var backend_data = {
-            "id": "home",
-            title: {},
-            "icon": "home"
-        };
-        if (backends_jsons[current_backend]) {
-            backend_data = backends_jsons[current_backend];
-        } else {
-            backend_data.title[i18n.get().getLocale()] = i18n.get().__("admin_panel");
-        }
-        var config = app.get("config"),
-            config_website = app.get("config_website");
-        template_engine.get().render("admin.njk", {
-            config: config,
-            config_website: config_website,
-            i18n: i18n.get(),
-            lang: i18n.get().getLocale(),
-            backend_html: backend_html,
-            backend_data: backend_data,
-            backend_json: backends_json_arr
-        }, function(err, html) {
-            if (err) {
-                logger.error(err);
-                throw err;
+        async.series([
+            function(callback) {
+                if (req.params && backends[req.params[0]]) {
+                    current_backend = req.params[0].toLowerCase();
+                    backends[current_backend](req, res, function(data) {
+                        backend_html = data;
+                        callback();
+                    });
+                } else {
+                    callback();
+                }
+            },
+            function(callback) {
+                i18n.detect_locale(req);
+                var backend_data = {
+                    "id": "home",
+                    title: {},
+                    "icon": "home"
+                };
+                if (backends_jsons[current_backend]) {
+                    backend_data = backends_jsons[current_backend];
+                } else {
+                    backend_data.title[i18n.get().getLocale()] = i18n.get().__("admin_panel");
+                }
+                var config = app.get("config"),
+                    config_website = app.get("config_website");
+                template_engine.get().render("admin.njk", {
+                    config: config,
+                    config_website: config_website,
+                    i18n: i18n.get(),
+                    lang: i18n.get().getLocale(),
+                    backend_html: backend_html,
+                    backend_data: backend_data,
+                    backend_json: backends_json_arr,
+                    auth: auth
+                }, function(err, html) {
+                    if (err) {
+                        logger.error(err);
+                        throw err;
+                    }
+                    res.send(html);
+                    callback();
+                });
             }
-            res.send(html);
-        });
-
+        ]);
     };
 
     router.get("/", admin);

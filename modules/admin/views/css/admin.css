@@ -8,6 +8,8 @@
 .xwjs-nav-icon {
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .xwjs-nav-side > li.xwjs-active > a > .xwjs-nav-icon {
@@ -15,17 +17,35 @@
 }
 
 .xwjs-nav-side > li.xwjs-active {
-	border-left: 6px solid #FFF0A5;
+	border-left: 6px solid #91AA9D;
+}
+
+.xwjs-navbar-nav>li>a,
+.xwjs-navbar-flip>li>a  {
+    height: 60px;
 }
 
 .xwjs-navbar-nav>li>a {
-    height: 60px;
+	text-shadow: 0 0 0;
+	color: #aaa;
+	padding-top: 10px;
+}
+
+.xwjs-navbar-nav>li>a:hover,
+.xwjs-navbar-nav>li>a:focus {
+	color: #bbb;
+}
+
+.xwjs-navbar-nav>li.xwjs-open>a,
+.xwjs-navbar-nav>li:hover>a,
+.xwjs-navbar-nav>li>a:focus {
+	color: #bbb;
 }
 
 .xwjs-logo-img {
     margin-top: 16px;
-    /*width: 83px;
-    height: 35px;*/
+    width: 83px;
+    height: 35px;
 }
 
 .xwjs-admin-nav {
@@ -39,4 +59,9 @@
     -webkit-box-shadow: -2px 0px 15px -5px rgba(0, 0, 0, 0.56);
     -moz-box-shadow: -2px 0px 15px -5px rgba(0, 0, 0, 0.56);
     box-shadow: -2px 0px 15px -5px rgba(0, 0, 0, 0.56);
+}
+
+.xwjs-admin-user-nav {
+	margin-top: 0;
+	margin-left: -6px;
 }
