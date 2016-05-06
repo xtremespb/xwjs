@@ -29,6 +29,8 @@ module.exports = function(app) {
             password = password.trim();
             // Check the database
             users.findOne({ where: { username: username, password: password, status: { gt: 0 } } }, function(err, user) {
+				console.log(err);
+				console.log(user);
                 if (err || !user) {
                     err_code = 100;
                 } else {
@@ -64,9 +66,14 @@ module.exports = function(app) {
             email = email.trim().toLowerCase();
             // Check the database
             users.findOrCreate({ username: username }, { email: email, password: password }, function(err, user) {
-                if (err || !user) err_code = 3;
-                req.session.user_id = user.id;
-                return res.send(JSON.stringify({ err_code: err_code, user_id: user.id }));
+                if (err || !user) {
+					err_code = 3;
+					console.log(err);
+					return res.send(JSON.stringify({ err_code: err_code }));
+				} else {
+					req.session.user_id = user.id;
+					return res.send(JSON.stringify({ err_code: err_code, user_id: user.id }));
+				}                
             });
         };
 

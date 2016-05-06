@@ -1,6 +1,6 @@
 var fs = require("fs-extra"),
     path = require("path"),
-    compressor = require("node-minify");
+    compressor = require(path.join(__dirname, "..", "core", "minify"));
 /* Compress modules */
 var modules = fs.readdirSync(path.join(__dirname, "..", "modules"));
 for (var m in modules)
