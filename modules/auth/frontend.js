@@ -29,7 +29,10 @@ module.exports = function(app) {
         logout = function(req, res, next) {
             if (req.session && req.session.auth_id) {
                 delete req.session.auth_id;
-                return res.redirect(303, "/?logout=" + Math.random().toString().replace('.', ''));
+				delete req.session.auth_data;
+				req.session.save(function() {
+					return res.redirect(303, "/?logout=" + Math.random().toString().replace('.', ''));
+				});                
             } else {
                 return res.redirect(303, "/auth/login?rnd=" + Math.random().toString().replace('.', ''));
             }
