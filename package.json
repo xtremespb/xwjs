@@ -8,8 +8,6 @@
   "dependencies": {
     "async": "^1.5.2",
     "body-parser": "^1.15.0",
-    "caminte": "^0.2.8",
-    "connect-redis": "^3.0.2",
     "cookie-parser": "^1.4.1",
     "deepcopy": "^0.6.1",
     "express": "^4.13.4",
@@ -24,8 +22,6 @@
     "nodemailer-sendmail-transport": "^1.0.0",
     "nunjucks": "^2.4.1",
     "path": "^0.12.7",
-    "pngjs": "^2.2.0",
-    "redis": "^2.5.3",
     "session-file-store": "^0.2.0",
     "sqwish": "^0.2.2",
     "striptags": "^2.1.1",

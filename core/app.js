@@ -29,6 +29,9 @@ app.use(session(config.session.settings));
 /* Initialize static folder */
 app.use(express.static(path.join(__dirname, '..', 'static')));
 
+/* Check database connection */
+app.use(default_routes.database);
+
 /* Load "first" route */
 app.use(default_routes.first);
 

@@ -2,12 +2,23 @@ module.exports = function(app) {
     var path = require("path"),
         template_engine = require(path.join(__dirname, "template_engine"))(app),
         logger = require(path.join(__dirname, "logger")),
+        database_driver = require(path.join(__dirname, "database"))(app),
         i18n = require(path.join(__dirname, "i18n"))(app);
 
     i18n.init();
     template_engine.init(path.join(__dirname, "..", "views"));
 
     var default_routes = {
+        database: function(req, res, next) {
+            database_driver.init(function(success) {
+                if (!success) {
+                    var err = new Error("Error while connecting to the database");
+                    err.status = 500;
+                    return next(err);
+                }
+                return next();
+            });
+        },
         first: function(req, res, next) {
             logger.debug(req.ip + " " + req.method + " " + req.originalUrl);
             if (!req.session) {

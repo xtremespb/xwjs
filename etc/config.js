@@ -20,8 +20,31 @@ var prefix = "xwjs",
         reapInterval: 86400,
         maxAge: 604800
     },
+    mongodb = {
+        url: "mongodb://localhost/" + prefix + "_db",
+        options: {
+            server: {
+                auto_reconnect: false,
+                poolSize: 10,
+                socketOptions: {
+                    keepAlive: 1
+                }
+            },
+            db: {
+                numberOfRetries: 10,
+                retryMiliSeconds: 1000
+            }
+        }
+    },
     tingodb = {
-        database: path.join(__dirname, "db")
+        file: path.join(__dirname, "db"),
+        options: {
+            memStore: false,
+            nativeObjectID: false,
+            cacheSize: 1000,
+            cacheMaxObjSize: 1024,
+            searchInArray: false
+        }
     },
     /* Mail transporter */
     transporter = nodemailer.createTransport({
@@ -70,10 +93,7 @@ var prefix = "xwjs",
                 }
             }
         },
-        orm: {
-            driver: "tingodb",
-            config: tingodb
-        },
+        database: tingodb,
         captcha: {
             driver: "yac"
         },
