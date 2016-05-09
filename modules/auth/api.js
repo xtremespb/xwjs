@@ -6,11 +6,11 @@ module.exports = function(app) {
     i18n.init("auth");
 
     var columns = {
+        "_id": 1,
         "username": 1,
         "realname": 1,
         "email": 1,
-        "status": 1,
-        "groups": 1
+        "status": 1
     };
 
     var lang = function(req, res, next) {
@@ -104,6 +104,7 @@ module.exports = function(app) {
         users_list = function(req, res, next) {
             res.setHeader('Content-Type', 'application/json');
             if (!req.session || !req.session.auth_id || req.session.auth_id < 2) return res.send(JSON.stringify({ err_code: 10 }));
+            var config = app.get("config");
             var skip_records = req.query.skip_records || req.body.skip_records,
                 sort_column = req.query.sort_column || req.body.sort_column,
                 sort_direction = req.query.sort_direction || req.body.sort_direction,
@@ -117,6 +118,17 @@ module.exports = function(app) {
             } else {
                 find_string = find_string.trim();
             }
+            app.get("database").collection(config.prefix + "_users").find({
+                }, {
+                fields: columns
+            }).toArray(function(err, users) {
+                if (err) {
+                    err_code = 100;
+                    return res.send(JSON.stringify({ err_code: err_code }));
+                } else {
+                    return res.send(JSON.stringify({ err_code: 0, users: users }));
+                }
+            });
             // Build query
             // var query = users.find();
             // if (sort_column) query.sort(sort_column + " " + sort_direction);
@@ -126,20 +138,20 @@ module.exports = function(app) {
             //         // or_query.push(column, find_string);
             //     });
             // }
-            users.find({
-                    where: {
-                        $or: [{
-                            email: "m.meiser@t-systems.com"
-                        }]
-                    }
-                },
-                function(err, db_users) {
-                    if (err) return res.send(JSON.stringify({ err_code: 20, err: err }));
+            // users.find({
+            //         where: {
+            //             $or: [{
+            //                 email: "m.meiser@t-systems.com"
+            //             }]
+            //         }
+            //     },
+            //     function(err, db_users) {
+                    // if (err) return res.send(JSON.stringify({ err_code: 20, err: err }));
                     // if (users && users.length > 0)
                     //     for (var u in users)
                     //         if (users[u].password) users[u].password = undefined;
-                    return res.send(JSON.stringify(db_users));
-                });
+                    // return res.send(JSON.stringify(db_users));
+                // });
             // query.run({}, function(err, users) {
             //     if (err) return res.send(JSON.stringify({ err_code: 20 }));
             //     if (users && users.length > 0)

@@ -13,5 +13,9 @@
 	"error_password": "Invalid password syntax",
 	"error_captcha": "Invalid captcha",
 	"error_unauthorized": "Authorization failed",
-	"error_unknown": "Unknown error. Please try again later."
+	"error_unknown": "Unknown error. Please try again later.",
+	"realname": "Real name",
+	"email": "E-mail",
+	"status": "Status",
+	"actions": "Actions"
 }

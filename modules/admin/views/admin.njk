@@ -37,7 +37,7 @@
                     <li class="xwjs-admin-nav-{{ item.id }}"><a href="/admin/{{ item.id }}"><i class="xwjs-icon-{{ item.icon }} xwjs-nav-icon"></i>{{ item.title[lang] }}</a></li>{% endfor %}
                 </ul>
             </div>
-            <div class="xwjs-width-xlarge-5-6 xwjs-width-large-8-10 xwjs-width-medium-7-10 xwjs-width-small-1-1 xwjs-admin-content">{{ backend_html }}</div>
+            <div class="xwjs-width-xlarge-5-6 xwjs-width-large-8-10 xwjs-width-medium-7-10 xwjs-width-small-1-1 xwjs-admin-content">{{ backend_html | safe }}</div>
         </div>
         <script>$('.xwjs-admin-nav-{{ backend_data.id }}').addClass('xwjs-active');</script>
     </body>

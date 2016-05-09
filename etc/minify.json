@@ -1,6 +1,10 @@
 {
-    "css": [{
-        "source": ["frontend.css"],
-        "output": "frontend.min.css"
-    }]
+	"css": [{
+		"source": ["frontend.css"],
+		"output": "frontend.min.css"
+	}],
+	"js": [{
+		"source": ["jquery.xwjsTable.js"],
+		"output": "jquery.xwjsTable.min.js"
+	}]
 }

@@ -15,5 +15,4 @@ module.exports = function(app) {
             data: router_api
         }
     };
-
 };
