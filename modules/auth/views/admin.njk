@@ -1,12 +1,12 @@
 <div class="uk-overflow-container">
-    <table class="xwjs-admin-users-table xwjs-table xwjs-table-striped" xwjs-data-source="/api/auth/users/list">
+    <table class="xwjs-table xwjs-table-striped xwjs-table-hover" xwjs-data-source="/api/auth/users/list" id="xwjs_admin_users_table">
         <thead>
             <tr>
-                <th class="xwjs-width-2-10">{{ i18n.__('username') }}</th>
-                <th class="xwjs-width-3-10">{{ i18n.__('realname') }}</th>
-                <th class="xwjs-hidden-small xwjs-width-3-10">{{ i18n.__('email') }}</th>
-                <th class="xwjs-text-center xwjs-hidden-small xwjs-width-1-10">{{ i18n.__('status') }}</th>
-                <th class="xwjs-text-center xwjs-width-1-10">{{ i18n.__('actions') }}</th>
+                <th class="xwjs-width-2-10" xwjs-th-id="username">{{ i18n.__('username') }}</th>
+                <th class="xwjs-width-3-10" xwjs-th-id="realname">{{ i18n.__('realname') }}</th>
+                <th class="xwjs-width-3-10" xwjs-th-id="email">{{ i18n.__('email') }}</th>
+                <th class="xwjs-text-center xwjs-width-1-10" xwjs-th-id="status">{{ i18n.__('status') }}</th>
+                <th class="xwjs-text-center xwjs-width-1-10" xwjs-th-id="actions">{{ i18n.__('actions') }}</th>
             </tr>
         </thead>
         <tbody>

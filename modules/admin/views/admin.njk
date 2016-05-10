@@ -7,10 +7,13 @@
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="/uikit/css/uikit.gradient.min.css">
         <link rel="stylesheet" href="/xwjs/css/frontend.min.css">
-        <link rel="stylesheet" href="/modules/admin/css/admin.min.css">
+        <link rel="stylesheet" href="/modules/admin/css/admin.min.css">{% if backend_data.id != "home" %}
+        <link rel="stylesheet" type="text/css" href="/modules/{{ backend_data.id }}/css/admin.min.css">{% endif %}
         <script src="/js/jquery.min.js"></script>
         <script src="/uikit/js/uikit.min.js"></script>
-        <script src="/modules/admin/js/admin.min.js"></script>
+        <script src="/modules/admin/js/admin.min.js"></script>{% if backend_data.id != "home" %}
+        <script src="/api/{{ backend_data.id }}/lang"></script>
+        <script src="/modules/{{ backend_data.id }}/js/admin.min.js"></script>{% endif %}
     </head>
     <body>
         <nav class="xwjs-navbar xwjs-navbar-attached xwjs-admin-navbar">

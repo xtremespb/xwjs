@@ -3,14 +3,14 @@
         "source": ["../../../../static/uikit/css/components/tooltip.gradient.min.css", "../../../../static/uikit/css/components/notify.gradient.min.css", "login.css"],
         "output": "login.min.css"
     }, {
-        "source": "admin.css",
+        "source": ["../../../../static/uikit/css/components/notify.gradient.min.css", "admin.css"],
         "output": "admin.min.css"
     }],
     "js": [{
         "source": ["../../../../static/js/jquery.formValidator.min.js", "../../../../static/js/jquery.queryParser.min.js", "../../../../static/uikit/js/components/tooltip.min.js", "../../../../static/uikit/js/components/notify.min.js", "login.js"],
         "output": "login.min.js"
     }, {
-        "source": "admin.js",
+        "source": ["../../../../static/uikit/js/components/notify.min.js", "../../../../static/xwjs/js/jquery.xwjsTable.min.js", "admin.js"],
         "output": "admin.min.js"
     }]
 }

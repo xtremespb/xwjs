@@ -19,9 +19,3 @@
 {"k":"0000000078","o":"0000000146","v":"001"}
 {"_id":8,"_uid":8,"_dt":1462703169808,"_s":"1101583b3c903e7e3902aef4734e256c"}
 {"username":"meiser","realname":null,"groups":null,"password":"12345678","email":"m.meiser@t-systems.com","status":1,"_id":{"$wrap":"$oid","v":8}}
-{"k":"0000000078","o":"0000000135","v":"001"}
-{"_id":9,"_uid":9,"_dt":1462705428243,"_s":"29615a712f08284765572abfaee4f030"}
-{"username":"test","realname":null,"groups":null,"password":"12345678","email":"xtreme@rh1.ru","status":0,"_id":{"$wrap":"$oid","v":9}}
-{"k":"0000000078","o":"0000000106","v":"001"}
-{"_id":2,"_uid":9,"_dt":1462715155644,"_s":"7d0a1837cf2eafc02a218506eb855dca"}
-{"username":"admin","email":"xtreme@rh1.ru","password":"12345678","status":2,"_id":{"$wrap":"$oid","v":2}}

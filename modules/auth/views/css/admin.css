@@ -1,0 +1,16 @@
+.xwjs-notify {
+    z-index: 5000;
+}
+
+.xwjs-notify-message {
+    text-align: center;
+    color: #fff;
+}
+
+.xwjs-notify-message-danger {
+    background: red;
+}
+
+.xwjs-notify-message-success {
+    background: green;
+}

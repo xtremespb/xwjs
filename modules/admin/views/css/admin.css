@@ -12,34 +12,34 @@
 }
 
 .xwjs-nav-side > li.xwjs-active > a > .xwjs-nav-icon {
-	padding-left: 14px;
+    padding-left: 14px;
 }
 
 .xwjs-nav-side > li.xwjs-active {
-	border-left: 6px solid #91AA9D;
+    border-left: 6px solid #91AA9D;
 }
 
 .xwjs-navbar-nav>li>a,
-.xwjs-navbar-flip>li>a  {
+.xwjs-navbar-flip>li>a {
     height: 60px;
 }
 
 .xwjs-navbar-nav>li>a {
-	text-shadow: 0 0 0;
-	color: #aaa;
-	padding-top: 10px;
+    text-shadow: 0 0 0;
+    color: #aaa;
+    padding-top: 10px;
 }
 
 .xwjs-navbar-nav>li>a:hover,
 .xwjs-navbar-nav>li>a:focus {
-	color: #bbb;
+    color: #bbb;
 }
 
 .xwjs-navbar-nav>li.xwjs-open>a,
 .xwjs-navbar-nav>li:hover>a,
 .xwjs-navbar-nav>li>a:focus {
-	color: #bbb;
-	background: #060606;
+    color: #bbb;
+    background: #060606;
 }
 
 .xwjs-logo-img {
@@ -62,13 +62,13 @@
 }
 
 .xwjs-admin-user-nav {
-	margin-top: 3px;
-	min-width: 100px;
-	border-top-left-radius: 0;
+    margin-top: 3px;
+    min-width: 100px;
+    border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-top: 0;
 }
 
 .xwjs-admin-user-nav > ul > li {
-	text-align: center;
+    text-align: center;
 }

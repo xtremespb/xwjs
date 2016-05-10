@@ -1,17 +1,19 @@
 module.exports = function(app) {
     var path = require("path"),
         mailer = require(path.join(__dirname, "..", "..", "core", "mailer"))(app),
-        i18n = require(path.join(__dirname, "..", "..", "core", "i18n"))(app);
+        i18n = require(path.join(__dirname, "..", "..", "core", "i18n"))(app),
+        async = require("async");
 
     i18n.init("auth");
 
     var columns = {
-        "_id": 1,
-        "username": 1,
-        "realname": 1,
-        "email": 1,
-        "status": 1
-    };
+            "_id": 1,
+            "username": 1,
+            "realname": 1,
+            "email": 1,
+            "status": 1
+        },
+        default_items_per_page = 50;
 
     var lang = function(req, res, next) {
             res.setHeader('Content-Type', 'application/javascript');
@@ -84,8 +86,8 @@ module.exports = function(app) {
                 username: username,
                 email: email
             }, {
-            	username: username,
-            	email: email,
+                username: username,
+                email: email,
                 password: password,
                 status: 2
             }, {
@@ -105,60 +107,47 @@ module.exports = function(app) {
             res.setHeader('Content-Type', 'application/json');
             if (!req.session || !req.session.auth_id || req.session.auth_id < 2) return res.send(JSON.stringify({ err_code: 10 }));
             var config = app.get("config");
-            var skip_records = req.query.skip_records || req.body.skip_records,
+            var page = req.query.page || req.body.page,
+                items_per_page = req.query.page || req.body.items_per_page,
                 sort_column = req.query.sort_column || req.body.sort_column,
                 sort_direction = req.query.sort_direction || req.body.sort_direction,
                 find_string = req.query.find_string || req.body.find_string;
             // Checks
-            if (!skip_records || typeof skip_records !== "string" || !skip_records.match(/^[0-9]+$/) || skip_records > 100) skip_records = undefined;
+            if (!page || typeof page !== "string" || !page.match(/^[0-9]+$/) || page > 999999) page = 1;
+            if (!items_per_page || typeof items_per_page !== "string" || !items_per_page.match(/^[0-9]+$/) || items_per_page > 500) items_per_page = default_items_per_page;
             if (!sort_column || typeof sort_column !== "string" || !sort_column.match(/^[a-zA-Z0-9_\-]+$/) || !columns[sort_column]) sort_column = undefined;
-            if (!sort_direction || typeof sort_direction !== "string" || sort_direction != "DESC") sort_direction = "ASC";
+            if (!sort_direction || typeof sort_direction !== "string" || sort_direction != "-1") sort_direction = "1";
             if (!find_string || typeof find_string !== "string" || !find_string.match(/^[\u00C0-\u1FFF\u2C00-\uD7FF\w\s\w_\-\@\*\.]+$/) || find_string.length > 50) {
                 find_string = undefined;
             } else {
                 find_string = find_string.trim();
             }
-            app.get("database").collection(config.prefix + "_users").find({
-                }, {
-                fields: columns
-            }).toArray(function(err, users) {
-                if (err) {
-                    err_code = 100;
-                    return res.send(JSON.stringify({ err_code: err_code }));
-                } else {
-                    return res.send(JSON.stringify({ err_code: 0, users: users }));
+            var skip = (page - 1) * items_per_page;
+            sort = {};
+            if (sort_column) sort[sort_column] = sort_direction;
+            var options = {
+                    fields: columns,
+                    skip: skip,
+                    limit: parseInt(items_per_page)
+                },
+                count = 0;
+            async.series([
+                function(callback) {
+                    app.get("database").collection(config.prefix + "_users").find({}, options).count(function(err, cnt) {
+                        if (err) return res.send(JSON.stringify({ err_code: 110 }));
+                        count = cnt;
+                        callback();
+                    });
+                },
+                function(callback) {
+                    app.get("database").collection(config.prefix + "_users").find({}, options).sort(sort).toArray(function(err, users) {
+                        if (err) return res.send(JSON.stringify({ err_code: 100 }));
+                        callback();
+                        return res.send(JSON.stringify({ err_code: 0, count: count, users: users }));
+                    });
                 }
-            });
-            // Build query
-            // var query = users.find();
-            // if (sort_column) query.sort(sort_column + " " + sort_direction);
-            // if (skip_records) query.skip(parseInt(skip_records));
-            // if (find_string) {
-            //     Object.keys(columns).forEach(function(column) {
-            //         // or_query.push(column, find_string);
-            //     });
-            // }
-            // users.find({
-            //         where: {
-            //             $or: [{
-            //                 email: "m.meiser@t-systems.com"
-            //             }]
-            //         }
-            //     },
-            //     function(err, db_users) {
-                    // if (err) return res.send(JSON.stringify({ err_code: 20, err: err }));
-                    // if (users && users.length > 0)
-                    //     for (var u in users)
-                    //         if (users[u].password) users[u].password = undefined;
-                    // return res.send(JSON.stringify(db_users));
-                // });
-            // query.run({}, function(err, users) {
-            //     if (err) return res.send(JSON.stringify({ err_code: 20 }));
-            //     if (users && users.length > 0)
-            //         for (var u in users)
-            //             if (users[u].password) users[u].password = undefined;
-            //     return res.send(JSON.stringify(users));
-            // });
+            ]);
+
         };
 
     /* Return routes and methods */
@@ -168,7 +157,7 @@ module.exports = function(app) {
     router.post("/login", login);
     router.post("/logout", logout);
     router.get("/register", register);
-    router.get("/users/list", users_list);
+    router.post("/users/list", users_list);
 
     return {
         router: router,

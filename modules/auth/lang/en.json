@@ -17,5 +17,10 @@
 	"realname": "Real name",
 	"email": "E-mail",
 	"status": "Status",
-	"actions": "Actions"
+	"actions": "Actions",
+	"ajax_error": "Error while loading data from server",
+	"ajax_fail": "Could not connect to the server",
+	"user_disabled": "Disabled",
+	"user_active": "Active",
+	"user_admin": "Administrator"
 }
